@@ -1,14 +1,14 @@
 # Next.js Boilerplate
 
-Next.js 15 · Auth.js v5 · Prisma + PostgreSQL · Tailwind CSS v4 · shadcn/ui
+Next.js 16 · Auth.js v5 · Prisma + PostgreSQL · Tailwind CSS v4 · shadcn/ui
 
 ## Stack
 
 | | |
 |---|---|
-| Framework | Next.js 15 (App Router) |
+| Framework | Next.js 16 (App Router) |
 | Auth | Auth.js v5 + Google OAuth |
-| Database | PostgreSQL 16 + Prisma 6 |
+| Database | PostgreSQL 16 + Prisma 7 |
 | UI | Tailwind CSS v4 + shadcn/ui |
 | Package manager | pnpm |
 | Deploy | Docker Compose |
@@ -34,8 +34,10 @@ docker compose up -d
 ### 3. Run database migrations
 
 ```bash
-docker compose exec app pnpm db:migrate:deploy
+docker compose exec app prisma migrate deploy
 ```
+
+> The runner image includes the Prisma CLI binary so migrations can be run inside the running container.
 
 ### 4. Open the app
 
