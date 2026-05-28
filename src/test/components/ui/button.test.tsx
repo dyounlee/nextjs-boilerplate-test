@@ -9,4 +9,11 @@ describe("buttonVariants", () => {
     expect(className).toContain("backdrop-blur")
     expect(className).toContain("bg-white/60")
   })
+
+  it("keeps the frosted contract on outline buttons", () => {
+    const className = buttonVariants({ variant: "outline", size: "sm" })
+
+    expect(className).toContain("bg-white/35")
+    expect(className).toContain("border-sky-200/30")
+  })
 })
