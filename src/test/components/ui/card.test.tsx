@@ -1,3 +1,4 @@
+import { createRef } from "react"
 import { render, screen } from "@testing-library/react"
 import { describe, it, expect } from "vitest"
 
@@ -22,5 +23,14 @@ describe("Card", () => {
     expect(screen.getByText("Footer")).toBeInTheDocument()
     expect(container.firstChild).toHaveClass("backdrop-blur-xl")
     expect(container.firstChild).toHaveClass("custom-glacier")
+  })
+
+  it("forwards refs to the card container", () => {
+    const ref = createRef<HTMLDivElement>()
+
+    render(<Card ref={ref}>Ref check</Card>)
+
+    expect(ref.current).toBeInstanceOf(HTMLDivElement)
+    expect(ref.current).toHaveTextContent("Ref check")
   })
 })
