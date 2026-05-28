@@ -1,3 +1,4 @@
+import { createRef } from "react"
 import { render, screen } from "@testing-library/react"
 import { describe, it, expect } from "vitest"
 
@@ -9,5 +10,14 @@ describe("Input", () => {
 
     expect(screen.getByPlaceholderText("Type here")).toBeInTheDocument()
     expect(container.firstChild).toHaveClass("backdrop-blur-md")
+  })
+
+  it("forwards refs to the underlying input", () => {
+    const ref = createRef<HTMLInputElement>()
+
+    render(<Input ref={ref} placeholder="Ref check" />)
+
+    expect(ref.current).toBeInstanceOf(HTMLInputElement)
+    expect(ref.current).toHaveAttribute("placeholder", "Ref check")
   })
 })

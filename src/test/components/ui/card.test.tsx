@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 describe("Card", () => {
   it("renders the Glacier card primitives", () => {
     const { container } = render(
-      <Card>
+      <Card className="custom-glacier">
         <CardHeader>
           <CardTitle>Glacier</CardTitle>
           <CardDescription>Layered glass surface</CardDescription>
@@ -21,5 +21,6 @@ describe("Card", () => {
     expect(screen.getByText("Content")).toBeInTheDocument()
     expect(screen.getByText("Footer")).toBeInTheDocument()
     expect(container.firstChild).toHaveClass("backdrop-blur-xl")
+    expect(container.firstChild).toHaveClass("custom-glacier")
   })
 })
