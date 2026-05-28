@@ -1,7 +1,9 @@
 import Google from "next-auth/providers/google"
 import type { NextAuthConfig } from "next-auth"
+import { getAuthSecret } from "./env"
 
 export const authConfig = {
+  secret: getAuthSecret(),
   providers: [Google],
   pages: {
     signIn: "/login",
