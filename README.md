@@ -74,6 +74,15 @@ Make sure the Vercel project has these environment variables in the correct scop
 - `AUTH_GOOGLE_SECRET`
 - `AUTH_URL` or `NEXTAUTH_URL`
 
+## Posts
+
+The dashboard is the authenticated home for the post workflow.
+
+- Routes: `/dashboard`, `/dashboard/posts/new`, `/dashboard/posts/[id]`, `/dashboard/posts/[id]/edit`
+- Access: only signed-in users can view or mutate posts
+- Body format: plain text only, no Markdown support
+- Tags: stored as a Prisma `String[]` and entered as a comma-separated list in the form
+
 ## Testing
 
 ```bash

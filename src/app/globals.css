@@ -87,6 +87,18 @@ body::before {
   mix-blend-mode: soft-light;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.14;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.55) 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(125, 211, 252, 0.35) 0 1px, transparent 1px);
+  background-size: 28px 28px, 34px 34px;
+}
+
 ::selection {
   background: rgba(125, 211, 252, 0.35);
   color: #172554;
