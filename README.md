@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Boilerplate
+
+Next.js 15 · Auth.js v5 · Prisma + PostgreSQL · Tailwind CSS v4 · shadcn/ui
+
+## Stack
+
+| | |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Auth | Auth.js v5 + Google OAuth |
+| Database | PostgreSQL 16 + Prisma 6 |
+| UI | Tailwind CSS v4 + shadcn/ui |
+| Package manager | pnpm |
+| Deploy | Docker Compose |
 
 ## Getting Started
 
-First, run the development server:
+### 1. Configure environment
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Fill in:
+- `AUTH_SECRET`: `openssl rand -base64 32`
+- `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET`: create OAuth 2.0 credentials in [Google Cloud Console](https://console.cloud.google.com/), add `http://localhost:3000/api/auth/callback/google` as an authorized redirect URI
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Start services
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+docker compose up -d
+```
 
-## Learn More
+### 3. Run database migrations
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+docker compose exec app pnpm db:migrate:deploy
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Open the app
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Visit [http://localhost:3000](http://localhost:3000)
 
-## Deploy on Vercel
+## Development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm install
+pnpm dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Requires a running PostgreSQL instance. Update `DATABASE_URL` in `.env` to point to your local DB, then run:
+
+```bash
+pnpm db:migrate
+```
+
+## Testing
+
+```bash
+pnpm test:run
+```
