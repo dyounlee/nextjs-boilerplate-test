@@ -1,5 +1,8 @@
 import * as React from "react"
 
+import {
+  glassPanelBase,
+} from "@/components/ui/glass"
 import { cn } from "@/lib/utils"
 
 const Card = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
@@ -8,10 +11,7 @@ const Card = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
       <div
         ref={ref}
         data-slot="card"
-        className={cn(
-          "rounded-2xl border border-white/20 bg-white/45 text-slate-800 shadow-[0_16px_45px_rgba(148,163,184,0.18)] backdrop-blur-xl",
-          className
-        )}
+        className={cn(glassPanelBase, className)}
         {...props}
       />
     )

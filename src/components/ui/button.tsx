@@ -1,10 +1,11 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 
+import { glassInteractiveBase } from "@/components/ui/glass"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-xl border border-white/20 bg-clip-padding text-sm font-medium whitespace-nowrap text-slate-800 shadow-[0_0_30px_rgba(125,211,252,0.1)] backdrop-blur-md transition-all outline-none select-none focus-visible:border-sky-300 focus-visible:ring-3 focus-visible:ring-sky-300/40 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-red-400 aria-invalid:ring-3 aria-invalid:ring-red-300/20 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  glassInteractiveBase,
   {
     variants: {
       variant: {
