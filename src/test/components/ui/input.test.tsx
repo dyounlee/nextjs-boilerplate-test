@@ -5,8 +5,9 @@ import { Input } from "@/components/ui/input"
 
 describe("Input", () => {
   it("renders a frosted glass input", () => {
-    render(<Input placeholder="Type here" />)
+    const { container } = render(<Input placeholder="Type here" />)
 
     expect(screen.getByPlaceholderText("Type here")).toBeInTheDocument()
+    expect(container.firstChild).toHaveClass("backdrop-blur-md")
   })
 })
