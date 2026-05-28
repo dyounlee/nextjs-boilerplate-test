@@ -63,6 +63,27 @@ Run migrations inside the container:
 docker compose exec app prisma migrate deploy
 ```
 
+## Deploy with GitHub Actions + Vercel
+
+This repository includes a workflow that:
+
+1. Runs `pnpm db:migrate:deploy` against the production database
+2. Links the repo to your Vercel project
+3. Pulls the Vercel project settings and environment variables
+4. Builds locally with `vercel build`
+5. Deploys the prebuilt output to Vercel production
+
+Required GitHub secrets:
+- `DATABASE_URL`
+- `VERCEL_TOKEN`
+- `VERCEL_PROJECT_ID`
+
+Required Vercel project environment variables:
+- `AUTH_SECRET`
+- `AUTH_GOOGLE_ID`
+- `AUTH_GOOGLE_SECRET`
+- `AUTH_URL` or `NEXTAUTH_URL`
+
 ## Testing
 
 ```bash
