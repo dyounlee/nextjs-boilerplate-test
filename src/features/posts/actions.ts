@@ -1,34 +1,13 @@
 "use server"
 
-import { auth } from "@/features/auth/auth"
 import { normalizeTags } from "@/features/posts/post-validation"
-import { prisma } from "@/lib/db/prisma"
+import { getCurrentUserId } from "@/features/posts/current-user"
 import {
   createPostForUser,
   deletePostForUser,
   updatePostForUser,
 } from "@/lib/db/posts"
 import { notFound, redirect } from "next/navigation"
-
-async function getCurrentUserId() {
-  const session = await auth()
-  const email = session?.user?.email?.trim()
-
-  if (!email) {
-    redirect("/login")
-  }
-
-  const user = await prisma.user.findUnique({
-    where: { email },
-    select: { id: true },
-  })
-
-  if (!user) {
-    redirect("/login")
-  }
-
-  return user.id
-}
 
 function getFormValue(formData: FormData, key: string) {
   const value = formData.get(key)
