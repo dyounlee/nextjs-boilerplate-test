@@ -29,6 +29,7 @@ cp .env.example .env
 Fill in:
 - `DATABASE_URL`: Neon connection string (from step 1)
 - `AUTH_SECRET`: `openssl rand -base64 32`
+- `NEXTAUTH_SECRET`: optional fallback if your deployment already uses the legacy NextAuth variable name
 - `AUTH_GOOGLE_ID` and `AUTH_GOOGLE_SECRET`: create OAuth 2.0 credentials in [Google Cloud Console](https://console.cloud.google.com/), add `http://localhost:3000/api/auth/callback/google` as an authorized redirect URI
 
 ### 3. Run database migrations
