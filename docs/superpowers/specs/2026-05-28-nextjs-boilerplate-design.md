@@ -14,6 +14,7 @@ A minimal, self-hostable Next.js boilerplate with authentication, database, and 
 - Tailwind CSS v4
 - shadcn/ui
 - Docker Compose (self-hosted)
+- pnpm (패키지 매니저)
 
 ---
 
@@ -162,7 +163,7 @@ export const config = {
 
 ## Docker Setup
 
-**Dockerfile** — multi-stage build (deps → builder → runner), `output: 'standalone'` for minimal image size.
+**Dockerfile** — multi-stage build (deps → builder → runner), `output: 'standalone'` for minimal image size. pnpm을 패키지 매니저로 사용 (`corepack enable` + `pnpm install --frozen-lockfile`).
 
 **docker-compose.yml:**
 - `db`: PostgreSQL 16 Alpine with healthcheck (`pg_isready`)
@@ -182,7 +183,7 @@ AUTH_URL="http://localhost:3000"
 cp .env.example .env
 # fill in AUTH_SECRET, AUTH_GOOGLE_ID, AUTH_GOOGLE_SECRET
 docker compose up -d
-docker compose exec app npx prisma migrate deploy
+docker compose exec app pnpm prisma migrate deploy
 ```
 
 ---
